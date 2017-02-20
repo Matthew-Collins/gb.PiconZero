@@ -38,3 +38,8 @@ Public Sub MotorSliders_Change()
   Me.Picon.SetMotor(Last.Tag, Last.Value)
 End
 
+Public Sub Form_Close()
+  Me.Ultrasonic.Close
+End
+
+
