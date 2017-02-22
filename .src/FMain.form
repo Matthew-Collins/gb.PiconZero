@@ -2,138 +2,154 @@
 
 { Form Form
   MoveScaled(0,0,64,64)
+  Icon = Picture["pi.png"]
+  Arrangement = Arrange.Vertical
+  Padding = 5
   { TabStrip1 TabStrip
-    MoveScaled(1,1,62,62)
+    MoveScaled(7,9,56,53)
+    Expand = True
+    Arrangement = Arrange.Vertical
+    Padding = 5
     Count = 4
     Index = 0
-    Text = ("Servos")
-    { SliderServo0 Slider ServoSliders
-      Name = "SliderServo0"
-      MoveScaled(2,4,57,4)
-      Tag = "0"
-      MinValue = -90
-      MaxValue = 90
-    }
-    { SliderServo1 Slider ServoSliders
-      Name = "SliderServo1"
-      MoveScaled(2,11,57,4)
-      Tag = "1"
-      MinValue = -90
-      MaxValue = 90
-    }
-    { SliderServo2 Slider ServoSliders
-      Name = "SliderServo2"
-      MoveScaled(2,18,57,4)
-      Tag = "2"
-      MinValue = -90
-      MaxValue = 90
-    }
-    { SliderServo3 Slider ServoSliders
-      Name = "SliderServo3"
-      MoveScaled(2,25,57,4)
-      Tag = "3"
-      MinValue = -90
-      MaxValue = 90
-    }
-    { SliderServo4 Slider ServoSliders
-      Name = "SliderServo4"
-      MoveScaled(2,32,57,4)
-      Tag = "4"
-      MinValue = -90
-      MaxValue = 90
-    }
-    { SliderServo5 Slider ServoSliders
-      Name = "SliderServo5"
-      MoveScaled(2,39,57,4)
-      Tag = "5"
-      MinValue = -90
-      MaxValue = 90
-    }
+    Text = ("&Servos")
+    Picture = Picture["icon:/22/rotate-right"]
     { Label1 Label
       MoveScaled(2,2,24,2)
       Text = ("Servo Channel #0")
+    }
+    { SliderServo0 Slider ServoSliders
+      Name = "SliderServo0"
+      MoveScaled(2,4,37,4)
+      Tag = "0"
+      MinValue = -90
+      MaxValue = 90
     }
     { Label2 Label
       MoveScaled(2,9,24,2)
       Text = ("Servo Channel #1")
     }
+    { SliderServo1 Slider ServoSliders
+      Name = "SliderServo1"
+      MoveScaled(2,11,52,4)
+      Tag = "1"
+      MinValue = -90
+      MaxValue = 90
+    }
     { Label3 Label
       MoveScaled(2,16,24,2)
       Text = ("Servo Channel #2")
+    }
+    { SliderServo2 Slider ServoSliders
+      Name = "SliderServo2"
+      MoveScaled(-12,18,57,4)
+      Tag = "2"
+      MinValue = -90
+      MaxValue = 90
     }
     { Label4 Label
       MoveScaled(2,23,24,2)
       Text = ("Servo Channel #3")
     }
+    { SliderServo3 Slider ServoSliders
+      Name = "SliderServo3"
+      MoveScaled(-5,25,57,4)
+      Tag = "3"
+      MinValue = -90
+      MaxValue = 90
+    }
     { Label5 Label
       MoveScaled(2,30,24,2)
       Text = ("Servo Channel #4")
+    }
+    { SliderServo4 Slider ServoSliders
+      Name = "SliderServo4"
+      MoveScaled(2,32,35,4)
+      Tag = "4"
+      MinValue = -90
+      MaxValue = 90
     }
     { Label6 Label
       MoveScaled(2,37,24,2)
       Text = ("Servo Channel #5")
     }
+    { SliderServo5 Slider ServoSliders
+      Name = "SliderServo5"
+      MoveScaled(2,39,9,4)
+      Tag = "5"
+      MinValue = -90
+      MaxValue = 90
+    }
     Index = 1
-    Text = ("Ultrasonic")
+    Text = ("&Ultrasonic")
+    Picture = Picture["icon:/22/last"]
     { Label7 Label
       MoveScaled(12,5,36,4)
       Text = ("Distance:")
     }
-    { LabelDistance Label
+    { LabelDistance LCDLabel
       MoveScaled(12,9,36,36)
+      Font = Font["Ubuntu,Bold,+10"]
+      Foreground = &HFFFF00&
+      Expand = True
       Alignment = Align.Center
+      Sheared = True
+      Padding = 5
+      HighlightColor = &HFFFFFF&
     }
     { DistanceTimer #Timer
       #MoveScaled(4,47)
     }
     Index = 2
-    Text = ("Obstacle Sensors")
-    { ObstacleTimer #Timer
-      #MoveScaled(2,48)
-    }
+    Text = ("&Obstacle Sensors")
+    Picture = Picture["icon:/22/halt"]
     { ObstacleSensor0 CheckBox ObstacleSensors
       Name = "ObstacleSensor0"
-      MoveScaled(2,2,57,4)
+      MoveScaled(2,2,57,5)
       Text = ("Obstacle Sensor #0")
     }
     { ObstacleSensor1 CheckBox ObstacleSensors
       Name = "ObstacleSensor1"
-      MoveScaled(2,7,57,4)
+      MoveScaled(5,9,57,5)
       Text = ("Obstacle Sensor #1")
     }
     { ObstacleSensor2 CheckBox ObstacleSensors
       Name = "ObstacleSensor2"
-      MoveScaled(2,12,57,4)
+      MoveScaled(7,16,57,5)
       Text = ("Obstacle Sensor #2")
     }
     { ObstacleSensor3 CheckBox ObstacleSensors
       Name = "ObstacleSensor3"
-      MoveScaled(2,17,57,4)
+      MoveScaled(2,26,57,5)
       Text = ("Obstacle Sensor #3")
     }
+    { ObstacleTimer #Timer
+      #MoveScaled(2,48)
+    }
     Index = 3
-    Text = ("Motors")
-    { SliderMotorB Slider MotorSliders
-      Name = "SliderMotorB"
-      MoveScaled(2,13,56,5)
-      Tag = "1"
-      MinValue = -128
-      MaxValue = 127
-    }
-    { SliderMotorA Slider MotorSliders
-      Name = "SliderMotorA"
-      MoveScaled(2,5,56,5)
-      Tag = "0"
-      MinValue = -128
-      MaxValue = 127
-    }
+    Text = ("&Motors")
+    Picture = Picture["icon:/22/exec"]
     { Label8 Label
       MoveScaled(2,3,18,2)
       Text = ("Motor A")
     }
+    { SliderMotorA Slider MotorSliders
+      Name = "SliderMotorA"
+      MoveScaled(1,5,50,5)
+      Tag = "0"
+      MinValue = -128
+      MaxValue = 127
+    }
     { Label9 Label
       MoveScaled(2,11,18,2)
       Text = ("Motor B")
+    }
+    { SliderMotorB Slider MotorSliders
+      Name = "SliderMotorB"
+      MoveScaled(2,13,39,5)
+      Tag = "1"
+      MinValue = -128
+      MaxValue = 127
     }
     Index = 0
   }
