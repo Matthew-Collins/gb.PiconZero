@@ -42,4 +42,14 @@ Public Sub Form_Close()
   Me.Ultrasonic.Close
 End
 
+Public Sub form_Resize()
+Dim fMeW As Float
 
+fMeW = Me.Width
+
+fMeW = (fMeW - 50) / 9
+If fMeW < 5 Then fMeW = 5
+
+LabelDistance.Font.Size = fMeW
+
+End

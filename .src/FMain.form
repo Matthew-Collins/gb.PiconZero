@@ -87,15 +87,13 @@
       MoveScaled(12,5,36,4)
       Text = ("Distance:")
     }
-    { LabelDistance LCDLabel
+    { LabelDistance Label
       MoveScaled(12,9,36,36)
-      Font = Font["Ubuntu,Bold,+10"]
+      Font = Font["Ubuntu,Bold,+20"]
       Foreground = &HFFFF00&
       Expand = True
-      Alignment = Align.Center
-      Sheared = True
       Padding = 5
-      HighlightColor = &HFFFFFF&
+      Alignment = Align.Center
     }
     { DistanceTimer #Timer
       #MoveScaled(4,47)
