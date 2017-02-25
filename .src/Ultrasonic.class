@@ -1,7 +1,5 @@
 ' Gambas class file
 
-Export
-
 'Dependancy: Must have HC-SR04 Ultrasonic Senor
 
 Public TriggerPin As GPIO_Pin

@@ -1,7 +1,5 @@
 ' Gambas class file
 
-Export
-
 'Dependancy: Must have 4Tronix PiconZero Hat
 
 'i2c Revisions

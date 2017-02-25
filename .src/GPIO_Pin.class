@@ -1,7 +1,5 @@
 ' Gambas class file
 
-Export
-
 'Dependancy: Must have GPIO Sysfs Interface for Userspace
 'Web:        https://www.kernel.org/doc/Documentation/gpio/sysfs.txt
 

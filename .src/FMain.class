@@ -22,8 +22,10 @@ Public Sub DistanceTimer_Timer()
   LabelDistance.text = Distance & "cm"
   If Distance <= 10 Then
     LabelDistance.Background = Color.Red
+    LabelDistance.Foreground = Color.Yellow
   Else
     LabelDistance.Background = Color.Default
+    LabelDistance.Foreground = Color.Black
   Endif
 End
 
@@ -38,18 +40,19 @@ Public Sub MotorSliders_Change()
   Me.Picon.SetMotor(Last.Tag, Last.Value)
 End
 
-Public Sub Form_Close()
-  Me.Ultrasonic.Close
+Public Sub MotorsStop_Click()
+  SliderMotorA.Value = 0
+  SliderMotorB.Value = 0
 End
 
-Public Sub form_Resize()
-Dim fMeW As Float
-
-fMeW = Me.Width
-
-fMeW = (fMeW - 50) / 9
-If fMeW < 5 Then fMeW = 5
-
-LabelDistance.Font.Size = fMeW
-
+Public Sub Form_Resize()
+  Dim NewFontSize As Integer = CInt((Me.Width - 50) / 9)
+  If NewFontSize < 5 Then
+    NewFontSize = 5
+  Endif
+  LabelDistance.Font.Size = NewFontSize
+End
+ 
+Public Sub Form_Close()
+  Me.Ultrasonic.Close
 End

@@ -1,7 +1,5 @@
 ' Gambas class file
 
-Export
-
 'Dependancy: i2c-Tools
 'sudo apt-get install i2c-tools
 

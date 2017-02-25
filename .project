@@ -3,13 +3,13 @@
 Title=PiconZero
 Startup=FMain
 Icon=pi1.png
-Version=1.0.3
+Version=1.0.4
 Component=gb.image
 Component=gb.qt4
 Component=gb.form
 Component=gb.qt4.ext
 Description="4tronix Picon Zero - Raspberry Pi Controller Hat - Gambas Library and Testing Tool\nControl 6 Servos, 4 Sensor, 1 Distance Sensor, 2 Motors and more.\nUse this project to kick start your new Picon Zero Robot or whatever."
-Authors="Matthew Collins"
+Authors="Matthew Collins\nCharlie Ogier"
 TabSize=2
 Language=en_GB
 CreateShortcut=1
