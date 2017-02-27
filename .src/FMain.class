@@ -42,6 +42,7 @@ End
 
 Public Sub ObstacleTimer_Timer()
   Dim oObj As Object
+  Dim iColour As Integer[] = [Color.red, Color.Green]                             'Colour chooser (True= -1, False = 0)
   
   ObstacleSensor0.Value = Me.Picon.GetObstacleSensor(0)
   ObstacleSensor1.Value = Me.Picon.GetObstacleSensor(1)
@@ -49,16 +50,12 @@ Public Sub ObstacleTimer_Timer()
   ObstacleSensor3.Value = Me.Picon.GetObstacleSensor(3)
   
   For Each oObj In HBoxSensors.Children                                           'For each TextBox in the HBox..
-    oObj.Background = Color.Green                                                 'Set each TextBox BackGround colour to Green
+    If oObj.Tag = "0" Then oObj.Background = iColour[ObstacleSensor0.Value + 1]   'If the TextBox Tag = 0 then make the TextBox Background Red or Green
+    If oObj.Tag = "1" Then oObj.Background = iColour[ObstacleSensor1.Value + 1]   'If the TextBox Tag = 1 then make the TextBox Background Red or Green
+    If oObj.Tag = "2" Then oObj.Background = iColour[ObstacleSensor2.Value + 1]   'If the TextBox Tag = 2 then make the TextBox Background Red or Green
+    If oObj.Tag = "3" Then oObj.Background = iColour[ObstacleSensor3.Value + 1]   'If the TextBox Tag = 3 then make the TextBox Background Red or Green
   Next
-  
-  For Each oObj In HBoxSensors.Children                                           'For each TextBox in the HBox..
-    If oObj.Tag = "0" And ObstacleSensor0.Value Then oObj.Background = Color.Red  'If the TextBox Tag = 0 AND the relevant Obstical Sensor value is true then make the TextBox Background Red
-    If oObj.Tag = "1" And ObstacleSensor1.Value Then oObj.Background = Color.Red  'If the TextBox Tag = 1 AND the relevant Obstical Sensor value is true then make the TextBox Background Red
-    If oObj.Tag = "2" And ObstacleSensor2.Value Then oObj.Background = Color.Red  'If the TextBox Tag = 2 AND the relevant Obstical Sensor value is true then make the TextBox Background Red
-    If oObj.Tag = "3" And ObstacleSensor3.Value Then oObj.Background = Color.Red  'If the TextBox Tag = 3 AND the relevant Obstical Sensor value is true then make the TextBox Background Red
-   Next
-  
+
 End
 
 Public Sub MotorSliders_Change()

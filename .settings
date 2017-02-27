@@ -10,9 +10,9 @@ Path="gb.PiconZero.gambas"
 [OpenFile]
 Count=3
 File[1]=".src/Ultrasonic.class:0.0"
-Active=2
+Active=3
 File[2]=".src/FMain.form"
-File[3]=".src/FMain.class:6.91"
+File[3]=".src/FMain.class:0.57"
 
 [VersionControl]
 RememberPassword=0
