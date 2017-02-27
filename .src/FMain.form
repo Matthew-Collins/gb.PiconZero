@@ -90,12 +90,24 @@
     }
     { LabelDistance Label
       MoveScaled(12,9,36,36)
-      Font = Font["Ubuntu,Bold,+20"]
+      Font = Font["DejaVu Sans,Bold,+10"]
       Foreground = &HFFFF00&
       Expand = True
       Padding = 5
-      Text = ("cm")
       Alignment = Align.Center
+    }
+    { HBox1 HBox
+      MoveScaled(0,54,57,4)
+      Padding = 2
+      { Label10 Label
+        MoveScaled(1,1,31,3)
+        Text = ("Message to speak if below 10 cms ")
+        Alignment = Align.Right
+      }
+      { TextBoxSpeak TextBox
+        MoveScaled(35,0,20,4)
+        Expand = True
+      }
     }
     { DistanceTimer #Timer
       #MoveScaled(4,47)

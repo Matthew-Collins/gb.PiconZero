@@ -10,6 +10,9 @@ Public Sub Form_Open()
   
   DistanceTimer.Start
   ObstacleTimer.Start
+  
+  TextBoxSpeak.text = Settings["Speak", "rabbit attack imminent"]             'What to say if there is an obstical 10cms or less away from the ltasonic sensor
+  TabStrip1.index = Settings["Tab", 0]                                        'Get the last Tab used
 
 End
 
@@ -22,10 +25,9 @@ Public Sub DistanceTimer_Timer()
   LabelDistance.text = Distance & "cm"
   If Distance <= 10 Then
     LabelDistance.Background = Color.Red
-    LabelDistance.Foreground = Color.Yellow
+    Shell "espeak " & Shell$(TextBoxSpeak.Text)
   Else
-    LabelDistance.Background = Color.Default
-    LabelDistance.Foreground = Color.Black
+    LabelDistance.Background = Color.DarkGreen
   Endif
 End
 
@@ -46,13 +48,14 @@ Public Sub MotorsStop_Click()
 End
 
 Public Sub Form_Resize()
-  Dim NewFontSize As Integer = CInt((Me.Width - 50) / 9)
-  If NewFontSize < 5 Then
-    NewFontSize = 5
-  Endif
+  Dim NewFontSize As Float = (Me.Width - 50) / 5 
+  
+  If NewFontSize < 5 Then NewFontSize = 5
   LabelDistance.Font.Size = NewFontSize
 End
  
 Public Sub Form_Close()
   Me.Ultrasonic.Close
+  Settings["Speak"] = TextBoxSpeak.text
+  Settings["Tab"] = TabStrip1.Index
 End
