@@ -131,6 +131,50 @@
     { HBoxSensors HBox
       MoveScaled(1,49,56,4)
       Visible = False
+      { TextBoxSensor0 TextBox
+        MoveScaled(2,0,11,4)
+        Visible = False
+        Font = Font["Bold"]
+        Background = &H7FFF00&
+        Foreground = &HFF7F00&
+        Expand = True
+        Text = ("Sensor 0")
+        Alignment = Align.Center
+        ReadOnly = True
+      }
+      { TextBoxSensor1 TextBox
+        MoveScaled(14,0,11,4)
+        Visible = False
+        Font = Font["Bold"]
+        Background = &H7FFF00&
+        Foreground = &HFF7F00&
+        Expand = True
+        Text = ("Sensor 1")
+        Alignment = Align.Center
+        ReadOnly = True
+      }
+      { TextBoxSensor2 TextBox
+        MoveScaled(28,0,11,4)
+        Visible = False
+        Font = Font["Bold"]
+        Background = &H7FFF00&
+        Foreground = &HFF7F00&
+        Expand = True
+        Text = ("Sensor 2")
+        Alignment = Align.Center
+        ReadOnly = True
+      }
+      { TextBoxSensor3 TextBox
+        MoveScaled(43,0,11,4)
+        Visible = False
+        Font = Font["Bold"]
+        Background = &H7FFF00&
+        Foreground = &HFF7F00&
+        Expand = True
+        Text = ("Sensor 3")
+        Alignment = Align.Center
+        ReadOnly = True
+      }
     }
     { HBox1 HBox
       MoveScaled(0,54,57,4)

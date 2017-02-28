@@ -30,8 +30,9 @@ End
 
 Public Sub DistanceTimer_Timer()
   Dim Distance As Integer = Me.Ultrasonic.GetDistance()
+  If Distance < 0 Then Return                                                 'To stop the odd negative figure appearing
   LabelDistance.text = Distance & "cm"
-  If Distance <= 10 Then
+    If Distance <= 10 Then
     LabelDistance.Background = Color.Red
     Shell "espeak " & Shell$(TextBoxSpeak.Text) Wait
     Wait 0.1
@@ -43,18 +44,16 @@ End
 Public Sub ObstacleTimer_Timer()
   Dim oObj As Object
   Dim iColour As Integer[] = [Color.red, Color.Green]                             'Colour chooser (True= -1, False = 0)
-  
+
   ObstacleSensor0.Value = Me.Picon.GetObstacleSensor(0)
   ObstacleSensor1.Value = Me.Picon.GetObstacleSensor(1)
   ObstacleSensor2.Value = Me.Picon.GetObstacleSensor(2)
   ObstacleSensor3.Value = Me.Picon.GetObstacleSensor(3)
-  
-  For Each oObj In HBoxSensors.Children                                           'For each TextBox in the HBox..
-    If oObj.Tag = "0" Then oObj.Background = iColour[ObstacleSensor0.Value + 1]   'If the TextBox Tag = 0 then make the TextBox Background Red or Green
-    If oObj.Tag = "1" Then oObj.Background = iColour[ObstacleSensor1.Value + 1]   'If the TextBox Tag = 1 then make the TextBox Background Red or Green
-    If oObj.Tag = "2" Then oObj.Background = iColour[ObstacleSensor2.Value + 1]   'If the TextBox Tag = 2 then make the TextBox Background Red or Green
-    If oObj.Tag = "3" Then oObj.Background = iColour[ObstacleSensor3.Value + 1]   'If the TextBox Tag = 3 then make the TextBox Background Red or Green
-  Next
+
+  TextBoxSensor0.Background = iColour[ObstacleSensor0.Value + 1]                  'Change TextBox Background depending on the ObsicalSensor Value
+  TextBoxSensor1.Background = iColour[ObstacleSensor1.Value + 1]                  'Change TextBox Background depending on the ObsicalSensor Value
+  TextBoxSensor2.Background = iColour[ObstacleSensor2.Value + 1]                  'Change TextBox Background depending on the ObsicalSensor Value
+  TextBoxSensor3.Background = iColour[ObstacleSensor3.Value + 1]                  'Change TextBox Background depending on the ObsicalSensor Value
 
 End
 
@@ -91,37 +90,12 @@ Dim bCheckBoxes As New Boolean[4]                                             'A
 End
 
 Public Sub AllSensors_Click()                                                 'Activated when any of the 4 Ultrasonic Tab CheckBoxes are clicked
-Dim siLoopCounter As Short                                                    'Counter
-Dim bSensor As New Boolean[4]                                                 'Array for each CheckBox
-Dim hTextBox As TextBox                                                       'For new TextBoxes
 
-bSensor[0] = CheckBoxSensor0.Value                                            'Setup bSensor array based on the CheckBox value
-bSensor[1] = CheckBoxSensor1.Value                                            'Setup bSensor array based on the CheckBox value
-bSensor[2] = CheckBoxSensor2.Value                                            'Setup bSensor array based on the CheckBox value
-bSensor[3] = CheckBoxSensor3.Value                                            'Setup bSensor array based on the CheckBox value
+If CheckBoxSensor0.Value Or CheckBoxSensor1.Value Or CheckBoxSensor2.Value Or CheckBoxSensor3.Value Then HBoxSensors.Visible = True Else HBoxSensors.Visible = False 'Hide the HBox of no CheckBoxes selected                                                'Hide the HBox 
 
-If bSensor[0] Or bSensor[1] Or bSensor[2] Or bSensor[3] Then                  'If there is at least one CheckBox value set then..
-  HBoxSensors.Visible = True                                                  'Make the HBox visible
-Else                                                                          'Else..
-  HBoxSensors.Visible = False                                                 'Hide the HBox 
-End If
-
-HBoxSensors.Children.Clear                                                    'Get rid of any TextBoxes in the HBox
-
-For siLoopCounter = 0 To 3                                                    'Loop for each CheckBox
-  If bSensor[siLoopCounter] Then                                              'If the CheckBox value is set then
-    hTextBox = New TextBox(HBoxSensors)                                       'Create a TextBox in the Hbox
-    With hTextBox                                                             'With each new textbox...
-      .Expand = True                                                          'Expand the TextBox
-      .Background = Color.Green                                               'Set the Background to Green
-      .ReadOnly = True                                                        'You can't type in it!
-      .Text = "Sensor " & Str(siLoopCounter)                                  'Add Text
-      .Foreground = Color.Orange                                              'Set the Font colour
-      .Font.Bold = True                                                       'Set to Bold
-      .Alignment = Align.Center                                               'Centre align the text
-      .Tag = Str(siLoopCounter)                                               'Add a Tag based on the value of siLoopCounter (To identify the TextBox in the 'ObstacleTimer_Timer()' routine)
-    End With                                                                  'End With
-  End If
-Next
+TextBoxSensor0.Visible = CheckBoxSensor0.Value                                'Make the TextBox visible if the CheckBox is checked
+TextBoxSensor1.Visible = CheckBoxSensor1.Value                                'Make the TextBox visible if the CheckBox is checked
+TextBoxSensor2.Visible = CheckBoxSensor2.Value                                'Make the TextBox visible if the CheckBox is checked
+TextBoxSensor3.Visible = CheckBoxSensor3.Value                                'Make the TextBox visible if the CheckBox is checked
 
 End
