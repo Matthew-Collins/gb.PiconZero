@@ -7,7 +7,7 @@ Public Sub Form_Open()
 Dim bCheckBoxes As Boolean[] = Settings["CheckBoxes", [False, False, False, False]]  'Get last settings of the CheckBoxes on the Ultrasonic Tab or set all as False
 
   Me.Picon = New PiconZero
-  Me.Ultrasonic = New Ultrasonic(20)
+  Me.Ultrasonic = New Ultrasonic(20)    'Raspiberry Pi: 20, TinkerBoard: 187
 
   DistanceTimer.Start
   ObstacleTimer.Start

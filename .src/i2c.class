@@ -7,6 +7,7 @@ Public Revison As Integer
 Public Address As Integer 
 
 Const Base16 As Integer = 256
+Const Path As String = "/usr/sbin/"
 
 Public Sub _new(PiRevison As Integer, PiAddress As Integer)
   Me.Revison = PiRevison
@@ -14,15 +15,15 @@ Public Sub _new(PiRevison As Integer, PiAddress As Integer)
 End
 
 Public Sub Detect()
-  Shell "i2cdetect -y " & Me.Revison Wait
+  Shell Path & "i2cdetect -y " & Me.Revison Wait
 End
 
 Public Sub Dump()
-  Shell "i2cdump -y " & Me.Revison & " " & Me.Address Wait
+  Shell Path & "i2cdump -y " & Me.Revison & " " & Me.Address Wait
 End
 
 Public Sub Write8(Register As Integer, Value As Integer)
-  Shell "i2cset -y " & Me.Revison & " " & Me.Address & " " & Register & " " & Value Wait
+  Shell Path & "i2cset -y " & Me.Revison & " " & Me.Address & " " & Register & " " & Value Wait
 End
 
 Public Sub Write16(Register As Integer, Value As Integer)
@@ -32,7 +33,7 @@ End
 
 Public Function Read8(Register As Integer) As Integer
   Dim ReturnValue As String
-  Shell "i2cget -y " & Me.Revison & " " & Me.Address & " " & Register Wait To ReturnValue
+  Shell Path & "i2cget -y " & Me.Revison & " " & Me.Address & " " & Register Wait To ReturnValue
   Return HexStringToInteger(Returnvalue)
 End
 
