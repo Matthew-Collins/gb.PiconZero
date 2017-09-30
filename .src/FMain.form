@@ -191,33 +191,34 @@
     }
     { DistanceTimer #Timer
       #MoveScaled(5,40)
-      Delay = 500
+      Delay = 100
     }
     Index = 2
     Text = ("&Obstacle Sensors")
     Picture = Picture["icon:/22/halt"]
     { ObstacleSensor0 CheckBox ObstacleSensors
       Name = "ObstacleSensor0"
-      MoveScaled(2,20,22.2222,5)
+      MoveScaled(2,20,22.2857,5)
       Text = ("Obstacle Sensor #0")
     }
     { ObstacleSensor1 CheckBox ObstacleSensors
       Name = "ObstacleSensor1"
-      MoveScaled(2,25,22.2222,5)
+      MoveScaled(2,25,22.2857,5)
       Text = ("Obstacle Sensor #1")
     }
     { ObstacleSensor2 CheckBox ObstacleSensors
       Name = "ObstacleSensor2"
-      MoveScaled(2,30,22.2222,5)
+      MoveScaled(2,30,22.2857,5)
       Text = ("Obstacle Sensor #2")
     }
     { ObstacleSensor3 CheckBox ObstacleSensors
       Name = "ObstacleSensor3"
-      MoveScaled(2,35,22.2222,5)
+      MoveScaled(2,35,22.2857,5)
       Text = ("Obstacle Sensor #3")
     }
     { ObstacleTimer #Timer
       #MoveScaled(2,48)
+      Delay = 500
     }
     Index = 3
     Text = ("&Motors")

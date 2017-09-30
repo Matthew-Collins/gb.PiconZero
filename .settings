@@ -4,13 +4,22 @@ Count=0
 [DebugWindow]
 Count=0
 
+[DebugWindow/System]
+Geometry=[-2,-1,437,724]
+
+[DebugWindow/System.Backtrace]
+Geometry=[88,52,437,724]
+
+[DebugWindow/System.Keywords]
+Geometry=[12,13,437,724]
+
 [Executable]
 Path="gb.PiconZero.gambas"
 
 [OpenFile]
 Count=1
 Active=1
-File[1]=".src/FMain.class:0.10"
+File[1]=".src/FMain.class:7.14"
 
 [VersionControl]
 RememberPassword=0
