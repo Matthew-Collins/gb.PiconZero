@@ -1,4 +1,5 @@
-Steps to Allow Access to GPIO:
+Steps to Allow Access to i2c:
+sudo apt-get install i2c-tools
 sudo adduser linaro i2c
 
 
@@ -6,12 +7,9 @@ Steps to Allow Access to GPIO:
 Open Terminal
 sudo pcmanfm
 >manually copy "101-tinker-gpio.rules" to "/etc/udev/rules.d/..." rename if already exists..
+sudo groupadd gpio
 sudo adduser linaro gpio
 sudo reboot
-
-
-Code Changes:
-Change GPIO pin number on Line 10 of FMain.Class.
 
 
 That's it...
@@ -19,6 +17,6 @@ That's it...
 Happy Tinkering...
 
 Matt Collins
-29 Sept 2017
+7 Oct 2017
 
 
