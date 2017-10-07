@@ -5,8 +5,7 @@ PiconZero
 1.0.8
 
 gb.image
-gb.qt4
+gb.gui.qt
 gb.form
 gb.settings
-gb.qt4.ext
 

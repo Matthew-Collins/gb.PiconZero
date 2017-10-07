@@ -1,14 +1,13 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.9.2
+# Compiled with Gambas 3.9.1
 Title=PiconZero
 Startup=FMain
 Icon=pi1.png
-Version=1.0.8
+Version=1.0.9
 Component=gb.image
-Component=gb.qt4
+Component=gb.gui.qt
 Component=gb.form
 Component=gb.settings
-Component=gb.qt4.ext
 Description="4tronix Picon Zero - Raspberry Pi Controller Hat - Gambas Library and Testing Tool\nControl 6 Servos, 4 Sensor, 1 Distance Sensor, 2 Motors and more.\nUse this project to kick start your new Picon Zero Robot or whatever."
 Authors="Matthew Collins\nCharlie Ogier"
 TabSize=2
