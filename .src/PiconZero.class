@@ -28,6 +28,7 @@ Public Reversals[6] As Boolean
 Public EndPoints[6, 2] As Integer
 
 Public Sub _new()
+
   Dim Channel As Integer
 
   Me.Bus = New I2c(REVISION_PI2_AND_PI3, ADDRESS)
@@ -42,34 +43,43 @@ Public Sub _new()
 End
 
 Public Sub CleanUp()
+
   Me.Bus.Write8(RESET, 0)
   Sleep 0.001
+
 End
 
 Public Sub SetServo(Channel As Integer, Value As Integer, Optional Max As Integer = 90, Optional Min As Integer = -90)
+
   Value = (GetReversal(Channel, (Value - Min) / (Max - Min)) * (EndPoint - StartPoint)) + StartPoint
   Value += Me.Trims[Channel]
   Value = GetEndpointAdjustment(Channel, Value)
   SetOutput(GetChannel(Channel), Value)
+
 End
 
 Public Function GetChannel(Channel As Integer) As Integer
+
   If Me.PlugOrder0To5 Then
     Return Channel
   Else
     Return 5 - Channel
   End If
+
 End
 
 Public Function GetReversal(Channel As Integer, Percent As Float) As Float
+
   If Me.Reversals[Channel] Then
     Return 1 - Percent
   Else
     Return Percent
   End If
+
 End
 
 Public Function GetEndPointAdjustment(Channel As Integer, Value As Integer) As Integer
+
   If Value < Me.EndPoints[Channel, 0] Then
     Return Me.EndPoints[Channel, 0]
   Else If Me.EndPoints[Channel, 1] > 0 And If Value > Me.EndPoints[Channel, 1]
@@ -77,32 +87,45 @@ Public Function GetEndPointAdjustment(Channel As Integer, Value As Integer) As I
   Else
     Return Value
   End If
+
 End
 
 Private Sub SetOutput(Channel As Integer, Value As Integer)
+
   Try Me.Bus.Write8(OUTPUT0 + Channel, Value)
+
 End
 
 Public Sub GetInput(Channel As Integer) As Integer
+
   Dim Value As Integer = -10
+
   Try Value = Me.Bus.Read16(Channel + 1)
   Return Value
+
 End
 
 Public Sub GetObstacleSensor(Channel As Integer) As Boolean
+
   Dim Value As Integer = -10
+
   Try Value = Me.Bus.Read8(Channel + 1)
   Return Value = 0
+
 End
 
 Public Sub SetMotor(Channel As Integer, Value As Integer)
+
   Try Me.Bus.Write8(Channel, cUnsigned(Value))
+
 End
 
 Private Function cUnsigned(Value As Integer) As Integer
+
   If Value < 0 Then
     Return Value + 256
   Else
     Return Value
   Endif
+
 End

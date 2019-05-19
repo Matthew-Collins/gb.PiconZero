@@ -1,0 +1,28 @@
+' Gambas module file
+
+Public Sub Main()
+
+  Test_001_Dump_Word_Compare
+  Test_002_Byte_Compare
+
+End
+
+Public Sub Test_001_Dump_Word_Compare()
+
+  Dim i2c As New I2c(1, &H22)
+
+  i2c.Dump()
+  i2c.Dump(True)
+
+End
+
+Public Sub Test_002_Byte_Compare()
+
+  Dim i2c As New I2c(1, &H22)
+
+  Print Hex(i2c.Read8(&h00))
+  Print Hex(i2c.Read8(&H01))
+  Print Hex(i2c.Read16(&H00, True))
+  Print Hex(i2c.Read16(&H00))
+
+End

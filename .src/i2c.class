@@ -4,51 +4,73 @@
 'sudo apt-get install i2c-tools
 
 Public Revison As Integer
-Public Address As Integer 
+Public Address As Integer
 
 Const Base16 As Integer = 256
 Const Path As String = "/usr/sbin/"
 
 Public Sub _new(PiRevison As Integer, PiAddress As Integer)
+
   Me.Revison = PiRevison
   Me.Address = PiAddress
+
 End
 
 Public Sub Detect()
+
   Shell Path & "i2cdetect -y " & Me.Revison Wait
+
 End
 
-Public Sub Dump()
-  Shell Path & "i2cdump -y " & Me.Revison & " " & Me.Address Wait
+Public Sub Dump(Optional EachRegisterIs16Bit As Boolean = False)
+
+  Shell Path & "i2cdump -y " & Me.Revison & " " & Me.Address & If(EachRegisterIs16Bit, " w", " b") Wait
+
 End
 
 Public Sub Write8(Register As Integer, Value As Integer)
+
   Shell Path & "i2cset -y " & Me.Revison & " " & Me.Address & " " & Register & " " & Value Wait
+
 End
 
-Public Sub Write16(Register As Integer, Value As Integer)
-  Me.Write8(Register, Value Mod Base16)
-  Me.Write8(Register + 1, Value Div Base16)
+Public Sub Write16(Register As Integer, Value As Integer, Optional OneByteAtTime As Boolean = False)
+
+  If OneByteAtTime Then
+    Me.Write8(Register, Value Mod Base16)
+    Me.Write8(Register + 1, Value Div Base16)
+  Else
+    Shell Path & "i2cset -y " & Me.Revison & " " & Me.Address & " " & Register & " " & Value & " w" Wait
+  End If
+
 End
 
 Public Function Read8(Register As Integer) As Integer
+
   Dim ReturnValue As String
+
   Shell Path & "i2cget -y " & Me.Revison & " " & Me.Address & " " & Register Wait To ReturnValue
   Return HexStringToInteger(Returnvalue)
+
 End
 
-Public Function Read16(Register As Integer) As Integer
-  Return Me.Read8(Register) + (Me.Read8(Register + 1) * Base16)
-End
+Public Function Read16(Register As Integer, Optional OneByteAtTime As Boolean = False) As Integer
 
-' Public Function Read16(Register As Integer) As Integer
-'   Dim ReturnValue As String
-'   Shell "i2cget -y " & Me.Revison & " " & Me.Address & " " & Register & " w" Wait To ReturnValue
-'   Return HexStringToInteger(Returnvalue) 'Wrong Value = Lower Value Twice
-' End
+  Dim ReturnValue As String
+
+  If OneByteAtTime Then
+    Return Me.Read8(Register) + (Me.Read8(Register + 1) * Base16)
+  Else
+    Shell "i2cget -y " & Me.Revison & " " & Me.Address & " " & Register & " w" Wait To ReturnValue
+    Return HexStringToInteger(Returnvalue)
+  Endif
+
+End
 
 Public Function HexStringToInteger(Value As String) As Integer
+
   Return CInt(Val(Replace(Replace(Value, "0x", "&H"), "\n", "")))
+
 End Function
 
 
